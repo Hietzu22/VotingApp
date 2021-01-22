@@ -3,7 +3,7 @@
 
 <div class="container">
 
-  <form>
+  <form name="Register">
     <fieldset>
       <legend>Register</legend>
       <div class="form-group">
@@ -25,5 +25,7 @@
   </form>
 
 </div>
+
+<script src="js/register.js"></script>
 
 <?php include_once 'layout/bot.inc.php'; ?>
