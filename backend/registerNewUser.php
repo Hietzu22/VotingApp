@@ -1,3 +1,4 @@
 <?php
-echo 'tallennettu';
-?>
+$servename
+
+//osa 5 35.30

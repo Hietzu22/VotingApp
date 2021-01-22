@@ -23,4 +23,12 @@ function registerNewUser(event) {
         return;
     }
 
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function() {
+        console.log(ajax.responseText);
+    }
+    ajax.open("POST", "backend/registerNewUser.php", true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send("Username ="+Username+"&Password="+Password);
+
 }
