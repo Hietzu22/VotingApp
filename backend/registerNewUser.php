@@ -1,4 +1,5 @@
 <?php
-$servename
-
-//osa 5 35.30
+$servename = "localhost";
+$db_username = "root";
+$db_password = "";
+$db = "votedb";
