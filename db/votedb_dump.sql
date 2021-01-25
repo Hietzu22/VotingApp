@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `votedb`.`User` (
   `username` VARCHAR(50) NOT NULL,
   `pwd` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
+  UNIQUE INDEX `username_UNIQUE` (`username` ) )
 ENGINE = InnoDB;
 
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `votedb`.`Poll` (
   `end` DATETIME NULL,
   `User_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Poll_User_idx` (`User_id` ASC) VISIBLE,
+  INDEX `fk_Poll_User_idx` (`User_id`),
   CONSTRAINT `fk_Poll_User`
     FOREIGN KEY (`User_id`)
     REFERENCES `votedb`.`User` (`id`)
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `votedb`.`Option` (
   `votes` INT NOT NULL DEFAULT 0,
   `Poll_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Option_Poll1_idx` (`Poll_id` ASC) VISIBLE,
+  INDEX `fk_Option_Poll1_idx` (`Poll_id`),
   CONSTRAINT `fk_Option_Poll1`
     FOREIGN KEY (`Poll_id`)
     REFERENCES `votedb`.`Poll` (`id`)
