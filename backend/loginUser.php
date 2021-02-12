@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (!isset($_POST['Username']) || !isset($_POST['Password'])) {
     $data = array(
         'error' => 'No post-data available!'
@@ -19,10 +21,25 @@ try {
         $data = array(
             'error' => 'An error happened!'
         );
+
     } else {
-        $data = array(
-            'success' => 'Succesfully logged in!'
-        );
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (password_verify($Password, $result['pwd'])) {
+            $data = array(
+                'success' => 'Succesfully logged in!'
+            );
+
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $result['id'];
+            $_SESSION['Username'] = $result['username'];
+
+        } else {
+            $data = array(
+                'error' => 'Incorrect password!'
+            );
+        }
+
     }
 } catch (PDOException $e) {
     $data = array(
