@@ -9,7 +9,7 @@
     <p class="mb-0"></p>
   </div>
 
-  <form name="Register">
+  <form name="register">
     <fieldset>
       <legend>Register</legend>
       <div class="form-group">
@@ -26,7 +26,6 @@
       </div>
       </fieldset>
       <button type="submit" class="btn btn-primary">Register</button>
-      <a href="login.php" class="btn btn-primary">Login</a>
     </fieldset>
   </form>
 

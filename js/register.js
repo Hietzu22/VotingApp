@@ -4,9 +4,9 @@ function registerNewUser(event) {
 
     event.preventDefault();
 
-    const Username = document.forms['Register']['Username'].value;
-    const Password = document.forms['Register']['Password'].value;
-    const CPassword = document.forms['Register']['CPassword'].value;
+    const Username = document.forms['register']['Username'].value;
+    const Password = document.forms['register']['Password'].value;
+    const CPassword = document.forms['register']['CPassword'].value;
 
     if (Username.length <= 0) {
         showMessage('error','Username Required!');
