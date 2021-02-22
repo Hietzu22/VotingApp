@@ -1,4 +1,4 @@
-document.forms['Register'].addEventListener('submit', registerNewUser);
+document.forms['register'].addEventListener('submit', registerNewUser);
 
 function registerNewUser(event) {
 
