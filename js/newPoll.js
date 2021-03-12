@@ -38,7 +38,7 @@ function createNewPoll(event) {
     ajax.onload = function() {
         const data = JSON.parse(this.responseText);
         if (data.hasOwnProperty('success')) {
-            alert('Succesfully Saved')
+            window.location.href = "index.php?type=success&msg=Poll saved successfully!"
         } else {
             showMessage('error', data.error);
         }

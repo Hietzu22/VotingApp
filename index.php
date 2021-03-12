@@ -15,8 +15,15 @@
       <h4 class="alert-heading"></h4>
       <p class="mb-0"></p>
     </div>
+
+    <h2>Polls</h2>
+      <ul id="votesUl" class="list-group">
+    
+  </ul>
+
 </div>
 
+<script src="js/index.js"></script>
 <script src="js/common.js"></script>
 
 <?php include_once 'layout/bot.inc.php'; ?>
