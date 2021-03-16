@@ -17,10 +17,11 @@
     </div>
 
     <h2>Polls</h2>
+      <button onclick="showPolls('current')" class="btn btn-primary">Show current polls</button>
+      <button onclick="showPolls('old')" class="btn btn-primary">Show old polls</button>
+      <button onclick="showPolls('future')" class="btn btn-primary">Show future polls</button>
       <ul id="votesUl" class="list-group">
-    
   </ul>
-
 </div>
 
 <script src="js/index.js"></script>
