@@ -7,6 +7,8 @@ if(pollParams.has('id')) {
     getPollData(pollParams.get('id'));
 }
 
+document.getElementById('optionsUl').addEventListener('click', giveVote);
+
 function getPollData(id) {
     console.log(id);
     let ajax = new XMLHttpRequest();
@@ -33,4 +35,18 @@ function showPoll(data) {
 
 ul.appendChild(newLi);
     });
+}
+
+function giveVote(event) {
+    console.log(event.target.dataset.optionid);
+
+    let id = event.target.dataset.optionid;
+
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function() {
+        data = JSON.parse(this.responseText);
+        console.log(data);
+    }
+    ajax.open("GET", "backend/giveVote.php?id=" + id);
+    ajax.send();
 }

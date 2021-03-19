@@ -1,1 +1,1 @@
-SELECT * FROM votedb.user;
+SELECT * FROM votedb.option;

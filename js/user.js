@@ -1,16 +1,16 @@
-window.addEventListener('load', getPolls);
+window.addEventListener('load', getOwnPolls);
 document.getElementById('votesUl').addEventListener('click', openPoll);
 
 let data = null;
 
-function getPolls() {
+function getOwnPolls() {
     console.log('Getting data');
     let ajax = new XMLHttpRequest();
     ajax.onload = function() {
         data = JSON.parse(this.responseText);
         showPolls();
     }
-    ajax.open("GET", "backend/getPolls.php?show_all=true");
+    ajax.open("GET", "backend/getPolls.php");
     ajax.send();
 }
 
