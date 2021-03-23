@@ -22,12 +22,13 @@ function getPollData(id) {
 }
 
 function showPoll(data) {
-    document.querySelector('h1').innerHTML = data[0].topic;
+    document.querySelector('h1').innerHTML = data.topic;
     const ul = document.getElementById('optionsUl');
 
     data['options'].forEach(option => {
         const newLi = document.createElement('li');
         newLi.classList.add('list-group-item');
+        newLi.classList.add('list-group-item-action');
         newLi.dataset.optionid = option.id;
 
         const liText = document.createTextNode(option.name);

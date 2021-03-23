@@ -18,7 +18,7 @@ try {
             'error' => 'Error occured!'
         );
     } else {
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $data = $result;
 
     }

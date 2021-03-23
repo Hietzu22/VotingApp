@@ -56,16 +56,23 @@ function showPolls(type = 'current') {
 function createPollLi(targetUl, pollId, pollTopic) {
     const newLi = document.createElement('li');
     newLi.classList.add('list-group-item');
+    newLi.classList.add('list-group-item-action');
     newLi.dataset.voteid = pollId;
 
     const newDeleteBtn = document.createElement('button');
     newDeleteBtn.dataset.action = 'delete';
     const deleteText = document.createTextNode('Delete poll');
+    newDeleteBtn.classList.add('btn');
+    newDeleteBtn.classList.add('btn-primary');
+    newDeleteBtn.classList.add('poll-btn');
     newDeleteBtn.appendChild(deleteText);
 
     const newEditBtn = document.createElement('button');
     newEditBtn.dataset.action = 'edit';
     const editText = document.createTextNode('Edit');
+    newEditBtn.classList.add('btn');
+    newEditBtn.classList.add('btn-primary');
+    newEditBtn.classList.add('poll-btn');
     newEditBtn.appendChild(editText);
 
     const liText = document.createTextNode(pollTopic);
@@ -111,5 +118,5 @@ function deletePoll(id) {
 }
 
 function editPoll(id) {
-    alert('Edit ' + id)
+    window.location.href = "editPoll.php?id="+id;
 }

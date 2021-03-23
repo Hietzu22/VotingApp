@@ -5,3 +5,8 @@
 #optionsUl {
     cursor: pointer;
 }
+
+.poll-btn {
+    float: right;
+    margin-left: 3px;
+}

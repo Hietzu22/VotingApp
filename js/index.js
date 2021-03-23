@@ -37,6 +37,7 @@ function showPolls(type = 'current') {
             if ((start == false || start <= now) && (end == false || end >= now)) {
                 const newLi = document.createElement('li');
                 newLi.classList.add('list-group-item');
+                newLi.classList.add('list-group-item-action');
                 newLi.dataset.voteid = poll.id;
             
                 const liText = document.createTextNode(poll.topic);
@@ -50,6 +51,7 @@ function showPolls(type = 'current') {
             if ((end < now) && (end != false)) {
                 const newLi = document.createElement('li');
                 newLi.classList.add('list-group-item');
+                newLi.classList.add('list-group-item-action');
                 newLi.dataset.voteid = poll.id;
             
                 const liText = document.createTextNode(poll.topic);
@@ -63,6 +65,7 @@ function showPolls(type = 'current') {
             if ((start > now) && (start != false)) {
                 const newLi = document.createElement('li');
                 newLi.classList.add('list-group-item');
+                newLi.classList.add('list-group-item-action');
                 newLi.dataset.voteid = poll.id;
             
                 const liText = document.createTextNode(poll.topic);
