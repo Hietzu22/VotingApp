@@ -6,9 +6,12 @@ if (pollParams.has('id')) {
 }
 
 let optionCount = 0;
+let toDelete = [];
 
 document.getElementById('addOption').addEventListener('click', addNewOption);
 document.getElementById('deleteLastOption').addEventListener('click', deleteLastOption);
+document.forms['editPoll'].addEventListener('submit', modifyPoll);
+document.querySelector('fieldset').addEventListener('click', getFieldsetClick);
 
 function getPollData(id) {
     console.log(id);
@@ -69,8 +72,16 @@ function createOptionInputDiv(count, name, id) {
 
     input.value = name;
 
-    div.appendChild(label)
-    div.appendChild(input)
+    const deleteButton = document.createElement('button');
+    deleteButton.className = "btn btn-sm btn-danger float-right";
+
+    const deleteText = document.createTextNode('Delete');
+    deleteButton.appendChild(deleteText);
+    deleteButton.dataset.action = 'delete';
+
+    div.appendChild(label);
+    div.appendChild(input);
+    div.appendChild(deleteButton);
 
     return div;
 }
@@ -126,4 +137,56 @@ function addNewOption(event) {
 
     document.querySelector('fieldset').appendChild(div)
     console.log(div);
+}
+
+function modifyPoll(event) {
+    event.preventDefault();
+    console.log('Save changes');
+
+    let pollData = {};
+    pollData.id = document.forms['editPoll']['id'].value;
+    pollData.topic = document.forms['editPoll']['topic'].value;
+    pollData.start = document.forms['editPoll']['start'].value;
+    pollData.end = document.forms['editPoll']['end'].value;
+
+    const options = [];
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach(function(input) {
+        if(input.name.indexOf('option') == 0) {
+            options.push({ id: input.dataset.optionId, name: input.value});
+        }
+    })
+
+    pollData.options = options;
+
+    pollData.toDelete = toDelete;
+
+    console.log(pollData);
+
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function() {
+        let data = JSON.parse(this.responseText);
+        if (data.hasOwnProperty('success')) {
+            window.location.href = "user.php?type=success&msg=Poll has been edited successfully!";
+        } else showMessage('error', data.error);
+    }
+    ajax.open("POST", "backend/modifyPoll.php", true);
+    ajax.setRequestHeader("Content-Type", "application/json");
+    ajax.send(JSON.stringify(pollData));
+}
+
+function getFieldsetClick(event) {
+    event.preventDefault();
+
+    let btn = event.target;
+
+    if (btn.dataset.action == 'delete') {
+        let div = btn.parentElement;
+        let input = div.querySelector('input');
+        let fieldset = div.parentElement;
+        toDelete.push({id: input.dataset.optionId});
+        fieldset.removeChild(div);
+    }
+
 }
