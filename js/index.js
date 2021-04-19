@@ -42,6 +42,16 @@ function showPolls(type = 'current') {
             
                 const liText = document.createTextNode(poll.topic);
                 newLi.appendChild(liText);
+
+                const newResultBtn = document.createElement('button');
+                newResultBtn.dataset.action = 'results';
+                const resultsText = document.createTextNode('Show Results');
+                newResultBtn.classList.add('btn');
+                newResultBtn.classList.add('btn-primary');
+                newResultBtn.classList.add('poll-btn');
+                newResultBtn.appendChild(resultsText);
+
+                newLi.appendChild(newResultBtn);
     
                 ul.appendChild(newLi);
             }
@@ -79,5 +89,17 @@ function showPolls(type = 'current') {
 
 function openPoll(event) {
     console.log(event.target.dataset.voteid);
+    const action = event.target.dataset.action;
+
+    if (action == 'results') {
+        let pollId = event.target.parentElement.dataset.voteid;
+        showResults(pollId);
+        return;
+    }
+
     window.location.href = "vote.php?id=" + event.target.dataset.voteid;
+}
+
+function showResults(id) {
+    window.location.href = "results.php?id="+id;
 }

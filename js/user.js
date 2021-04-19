@@ -75,12 +75,22 @@ function createPollLi(targetUl, pollId, pollTopic) {
     newEditBtn.classList.add('poll-btn');
     newEditBtn.appendChild(editText);
 
+    const newResultBtn = document.createElement('button');
+    newResultBtn.dataset.action = 'results';
+    const resultsText = document.createTextNode('Show Results');
+    newResultBtn.classList.add('btn');
+    newResultBtn.classList.add('btn-primary');
+    newResultBtn.classList.add('poll-btn');
+    newResultBtn.appendChild(resultsText);
+
     const liText = document.createTextNode(pollTopic);
     newLi.appendChild(liText);
 
     newLi.appendChild(newDeleteBtn);
 
     newLi.appendChild(newEditBtn);
+
+    newLi.appendChild(newResultBtn);
 
     targetUl.appendChild(newLi);
 }
@@ -98,6 +108,12 @@ function openPoll(event) {
     if (action == 'edit') {
         let pollId = event.target.parentElement.dataset.voteid;
         editPoll(pollId);
+        return;
+    }
+
+    if (action == 'results') {
+        let pollId = event.target.parentElement.dataset.voteid;
+        showResults(pollId);
         return;
     }
 
@@ -119,4 +135,8 @@ function deletePoll(id) {
 
 function editPoll(id) {
     window.location.href = "editPoll.php?id="+id;
+}
+
+function showResults(id) {
+    window.location.href = "results.php?id="+id;
 }
